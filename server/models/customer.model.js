@@ -10,15 +10,8 @@ const customerSchema = new mongoose.Schema(
       trim: true,
     },
     lastName: { type: String, trim: true },
-    businessName: {
-      type: String,
-      required: [true, "can't be blank"],
-      minLength: [2, 'Business Name should contain at least two characters!'],
-      trim: true,
-    },
     phone: {
       type: String,
-      required: [true, "can't be blank"],
       minLength: 10,
       match: [/^[6-9]\d{9}$/, 'should follow the correct format for phone number'],
       trim: true,
@@ -35,6 +28,7 @@ const customerSchema = new mongoose.Schema(
       immutable: true,
     },
     passwordHash: { type: String, required: true },
+    loanApplications: [{ type: mongoose.Schema.Types.ObjectId, ref: 'LoanApplications' }],
   },
   { timestamps: true },
 );
